@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ComponenteEva3 v-bind:juegos="arregloJuegos" v-on:juegoAEliminar="eliminarDelArregloJuegos"
+      v-on:juegoAInsertar="insertarJuegoEnElArreglo" />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import ComponenteEva3 from './components/ComponenteEva3.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ComponenteEva3
+  },
+  data: function () {
+    return {
+      arregloJuegos: ['Arena of Valor', 'Pokemon Unite', 'Donkey Kong', 'Heroes of the Storm', 'Valorant'],
+    }
+  },
+  methods: {
+    eliminarDelArregloJuegos: function (indiceJuego) {
+      this.arregloJuegos.splice(indiceJuego, 1);
+    },
+    insertarJuegoEnElArreglo: function (nombreJuego) {
+      this.arregloJuegos.push(nombreJuego);
+    },
   }
 }
 </script>
